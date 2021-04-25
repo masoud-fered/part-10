@@ -1,11 +1,12 @@
 const {EventEmitter} = require('events');
 
 class CryptoCurrency extends EventEmitter {
+    CHANGE_PRICE_EVENT = 'changePrice'
+
     constructor(name, price) {
         super();
         this._name = name;
         this._price = price;
-        this.CHANGE_PRICE_EVENT = 'changePrice'
     }
 
     get name() {
@@ -21,7 +22,8 @@ class CryptoCurrency extends EventEmitter {
     }
 
     set price(value) {
-        return super.emit(this.CHANGE_PRICE_EVENT, value);
+        super.emit(this.CHANGE_PRICE_EVENT, this._price, value);
+        this._price = value;
     }
 }
 
