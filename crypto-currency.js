@@ -5,6 +5,7 @@ class CryptoCurrency extends EventEmitter {
         super();
         this._name = name;
         this._price = price;
+        this.CHANGE_PRICE_EVENT = 'changePrice'
     }
 
     get name() {
@@ -20,8 +21,8 @@ class CryptoCurrency extends EventEmitter {
     }
 
     set price(value) {
-        this._price = value;
+        return super.emit(this.CHANGE_PRICE_EVENT, value);
     }
 }
 
-module.exports(CryptoCurrency)
+module.exports = {CryptoCurrency};
